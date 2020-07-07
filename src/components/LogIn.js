@@ -1,35 +1,39 @@
-import React, { Component } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-export default class LogIn extends Component {
+export default function LogIn() {
 
-    state = {
-        userName: '',
-        passWord: '',
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    // state = {
+    //     userName: '',
+    //     passWord: '',
+    // }
+
+    const handleUsernameChange = e => setUsername(e.target.value)
+    const handlePasswordChange = e => setPassword(e.target.value)
+
+    const handleChange = e => {
+        // setState({
+        //     [e.target.name]: e.target.value
+        // })
     }
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault()
     }
     
-    render() {
-        return (
-            <div>
-                <form>
-                    <input name="userName" placeholder='User Name' value={this.state.userName} onChange={this.handleChange}/>
-                    <br />
-                    <input name="passWord" type="password" placeholder='Password' value={this.state.passWord} onChange={this.handleChange}/>
-                    <br />
-                    <button onClick={this.onSubmit}>Submit</button>
-                    <Link to='/sign-up'><button>Sign Up</button></Link>
-                </form>
-            </div>
-        )
-    }
+
+    return (
+        <div>
+            <form>
+                <input name="userName" placeholder='User Name' value={username} onChange={handleChange}/>
+                <br />
+                <input name="passWord" type="password" placeholder='Password' value={password} onChange={handleChange}/>
+                <br />
+                <button onClick={onSubmit}>Submit</button>
+                <Link to='/sign-up'><button>Sign Up</button></Link>
+            </form>
+        </div>
+    )
 }

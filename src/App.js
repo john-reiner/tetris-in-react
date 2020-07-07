@@ -1,28 +1,25 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import Tetris from './components/Tetris';
 
 
 
 
-export default class App extends Component {
+const App = () =>  {
 
-  state = {
-    scores: []
-  }
+  const [users, setUsers] = useState([])
 
-  componentDidMount = () => {
-    fetch("http://localhost:3000/scores")
+  useEffect(() => {
+    fetch('http://localhost:3000/api/v1/users')
     .then(response => response.json())
-    .then(scores => this.setState({scores}))
-  }
-
-  render() {
-    let scores = this.state.scores
-    return (
-      <div className="App">
-        <Tetris scores={scores} />
-      </div>
-    )
-  }
+    .then(users => setUsers(users))
+  }, [])
+  
+  return (
+    <div className="App">
+      <Tetris  />
+    </div>
+  )
 }
+
+export default App

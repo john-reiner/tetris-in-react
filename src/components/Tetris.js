@@ -20,8 +20,6 @@ import LogIn from './LogIn'
 import LeaderBoard from './LeaderBoard'
 import SignUp from './SignUp'
 
-let currentUserId = 42069
-
 const Tetris = (props) => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
@@ -62,8 +60,8 @@ const Tetris = (props) => {
             if (player.pos.y < 1) {
             setGameOver(true);
             setDropTime(null);
-            fetchLevel(level)
-            fetchScore(score)
+            // fetchLevel(level)
+            // fetchScore(score)
             }
             updatePlayerPos({ x: 0, y: 0, collided: true });
         }
@@ -100,27 +98,27 @@ const Tetris = (props) => {
         drop();
     }, dropTime)
 
-    const fetchLevel = level => {
-        fetch('http://localhost:3000/levels', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({number: level})
+    // const fetchLevel = level => {
+    //     fetch('http://localhost:3000/levels', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({number: level})
             
-        })
-    }
+    //     })
+    // }
 
-    const fetchScore = score => {
-        fetch('http://localhost:3000/scores', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({amount: score})
+    // const fetchScore = score => {
+    //     fetch('http://localhost:3000/scores', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({amount: score})
             
-        })
-    }
+    //     })
+    // }
     
     return (
         
