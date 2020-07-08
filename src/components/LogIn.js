@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import {Button, Modal} from 'react-bootstrap'
 
 export default function LogIn() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -49,11 +49,11 @@ export default function LogIn() {
         </div>
     )
 }
-            <form>
-                <input name="userName" placeholder='User Name' value={username} onChange={handleChange}/>
-                <br />
-                <input name="passWord" type="password" placeholder='Password' value={password} onChange={handleChange}/>
-                <br />
-                <button onClick={onSubmit}>Submit</button>
-                <Link to='/sign-up'><button>Sign Up</button></Link>
-            </form>
+            // <form>
+            //     <input name="userName" placeholder='User Name' value={username} onChange={handleChange}/>
+            //     <br />
+            //     <input name="passWord" type="password" placeholder='Password' value={password} onChange={handleChange}/>
+            //     <br />
+            //     <button onClick={onSubmit}>Submit</button>
+            //     <Link to='/sign-up'><button>Sign Up</button></Link>
+            // </form>
