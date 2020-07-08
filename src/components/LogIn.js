@@ -22,6 +22,8 @@ export default function LogIn() {
     const onSubmit = e => {
         e.preventDefault()
     }
+
+    console.log("somthing")
     
 
     return (
