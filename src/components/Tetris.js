@@ -98,33 +98,11 @@ const Tetris = (props) => {
         drop();
     }, dropTime)
 
-    // const fetchLevel = level => {
-    //     fetch('http://localhost:3000/levels', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({number: level})
-            
-    //     })
-    // }
-
-    // const fetchScore = score => {
-    //     fetch('http://localhost:3000/scores', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({amount: score})
-            
-    //     })
-    // }
     
     return (
         
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
-        <NavBar />
-        <Route path="/login" render={() => <LogIn />}/>
+        
         <Route path="/leaderBoard" render={() => <LeaderBoard scores={props.scores}/>}/>
         <Route path="/sign-up" render={() => <SignUp/ >} />
         <Route exact path="/" render={() => 
