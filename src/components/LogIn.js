@@ -1,60 +1,56 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Button, Modal, Form} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-export default function LogIn() {
+export default function LogIn(props) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [show, setShow] = useState(true);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    // state = {
-    //     userName: '',
-    //     passWord: '',
-    // }
-
+    const [users, setUsers] = useState([])
+ 
     const handleUsernameChange = e => setUsername(e.target.value)
     const handlePasswordChange = e => setPassword(e.target.value)
 
-    const handleChange = e => {
-        // setState({
-        //     [e.target.name]: e.target.value
-        // })
-    }
-
     const onSubmit = e => {
         e.preventDefault()
+        console.log("submited", username, password)
     }
 
-    console.log("somthing")
+    useEffect(() => {
+        fetch('http://localhost:3000/api/v1/users')
+        .then(response => response.json())
+        .then(users => setUsers(users))
+    }, [])
     
-
+    
     return (
         <div>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={props.show} onHide={props.handleClose} >
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Welcome to Tetris in React!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
-                    <Form.Group controlId="formGroupEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                    <Form onSubmit={onSubmit} id="form">
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" onChange={handleUsernameChange} value={username} />
                     </Form.Group>
-                    <Form.Group controlId="formGroupPassword">
+                    <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} value={password} />
                     </Form.Group>
+                    <Form.Text className="text-muted">
+                            Not registered? <Link to='/sign-up' href="#">Create an account</Link>
+                    </Form.Text>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                </Button>
+                    <Button variant="primary" type='submit' form='form' >
+                        Login
+                    </Button>
+                    <Button variant="secondary" onClick={props.handleClose}>
+                        Login as guest
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>
