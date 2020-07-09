@@ -17,9 +17,14 @@ const App = () =>  {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
+  const logginUser = id => {
+    setUserId(id)
+  }
+
+
   return (
     <div className="App">
-      <LogIn handleClose={handleClose} show={show}/>
+      <LogIn logginUser={logginUser} handleClose={handleClose} show={show}/>
       <Tetris  />
     </div>
   )

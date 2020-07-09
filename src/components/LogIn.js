@@ -7,20 +7,27 @@ export default function LogIn(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [users, setUsers] = useState([])
- 
+    const [user, setUser] = useState({})
+
     const handleUsernameChange = e => setUsername(e.target.value)
     const handlePasswordChange = e => setPassword(e.target.value)
 
     const onSubmit = e => {
         e.preventDefault()
-        console.log("submited", username, password)
+        let user = users.find(user => user.username === username)
+        setUser(user)
     }
+
 
     useEffect(() => {
         fetch('http://localhost:3000/api/v1/users')
         .then(response => response.json())
         .then(users => setUsers(users))
     }, [])
+
+    useEffect(() => {
+        props.logginUser(user.id)
+    }, [user])
     
     
     return (
