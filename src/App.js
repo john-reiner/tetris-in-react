@@ -41,7 +41,7 @@ const App = () =>  {
     <div className="App">
       <NavBar username={username}/>
       <LogIn logginUser={logginUser} users={users} handleClose={handleClose} show={show}/>
-      <Tetris  />
+      <Tetris userId={userId} />
     </div>
   )
 }

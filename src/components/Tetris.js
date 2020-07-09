@@ -61,7 +61,7 @@ const Tetris = (props) => {
             setGameOver(true);
             setDropTime(null);
             // fetchLevel(level)
-            // fetchScore(score)
+            fetchScore(score)
             }
             updatePlayerPos({ x: 0, y: 0, collided: true });
         }
@@ -97,6 +97,22 @@ const Tetris = (props) => {
     useInterval(() => {
         drop();
     }, dropTime)
+
+    const fetchScore = () => {
+        console.log(typeof score)
+        fetch("http://localhost:3000/api/v1/scores", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: props.userId,
+                points: score,
+                rows: rows,
+                level: level
+            })
+        })
+    }
 
     
     return (
