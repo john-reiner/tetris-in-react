@@ -1,15 +1,16 @@
 import React from 'react'
 import Score from './Score'
 
-export default function leaderBoard() {
+export default function leaderBoard(props) {
     
-    const renderScores = () => {
-        return this.props.scores.map(score => {
-            return <Score userName={score.user_id} points={score.points} level={score.level} rows={score.rows} />
-        })
-    }
+    // const renderScores = () => {
+    //     return props.scores.map(score => {
+            
+    //         return <Score key={score.id} userName={score.user_id} points={score.points} level={score.level} rows={score.rows} />
+    //     })
+    // }
 
-
+    console.log(props)
     return (
         <div>
             <table className="ui celled striped padded table">
@@ -28,7 +29,7 @@ export default function leaderBoard() {
                             <h3 className="ui center aligned header">Rows</h3>
                         </th>
                     </tr>
-                    {renderScores()}
+                    {/* {renderScores()} */}
                 </tbody>
             </table>
         </div>

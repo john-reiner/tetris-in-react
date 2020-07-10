@@ -15,8 +15,8 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-import NavBar from './NavBar'
-import LogIn from './LogIn'
+// import NavBar from './NavBar'
+// import LogIn from './LogIn'
 import LeaderBoard from './LeaderBoard'
 import SignUp from './SignUp'
 
@@ -99,7 +99,6 @@ const Tetris = (props) => {
     }, dropTime)
 
     const fetchScore = () => {
-        console.log(typeof score)
         fetch("http://localhost:3000/api/v1/scores", {
             method: "POST",
             headers: {
@@ -114,12 +113,11 @@ const Tetris = (props) => {
         })
     }
 
-    
     return (
         
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
         
-        <Route path="/leaderBoard" render={() => <LeaderBoard scores={props.scores}/>}/>
+        <Route exact path="/leaderBoard" render={() => <LeaderBoard scores={props.scores}/>}/>
         <Route path="/sign-up" render={() => <SignUp/ >} />
         <Route exact path="/" render={() => 
             <StyledTetris>

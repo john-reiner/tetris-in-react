@@ -1,6 +1,6 @@
 .App {
     text-align: center;
-
+    background: url(${bgImage}) #000;
 }
 
 ul {
