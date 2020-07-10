@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Score extends Component {
-    render() {
+export default function Score(props) {
 
-        return (
-            <div>
-                <tr>
-                    <td>{this.props.userName}</td>
-                    <td>{this.props.points}</td>
-                    <td>{this.props.level}</td>
-                    <td>{this.props.rows}</td>
-                </tr>
-            </div>
-        )
-    }
+    return (
+        <tr>
+            <td>{props.id}</td>
+            <td>{props.username}</td>
+            <td>{props.score}</td>
+            <td>{props.level}</td>
+            <td>{props.rows}</td>
+        </tr>
+    )
 }

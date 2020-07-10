@@ -4,14 +4,13 @@ import Score from './Score'
 
 export default function leaderBoard(props) {
     
-    // const renderScores = () => {
-    //     return props.scores.map(score => {
+    const renderScores = () => {
+        return props.scores.map(score => {
             
-    //         return <Score key={score.id} userName={score.user_id} points={score.points} level={score.level} rows={score.rows} />
-    //     })
-    // }
+            return <Score key={score.id} id={score.id} username={score.user_id} score={score.points} level={score.level} rows={score.rows} />
+        })
+    }
 
-    console.log(props)
     return (
         <Table striped bordered hover variant="dark">
             <thead>
@@ -24,23 +23,7 @@ export default function leaderBoard(props) {
                 </tr>
             </thead>
             <tbody>
-                {/* <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td colSpan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                </tr> */}
+                {renderScores()}
             </tbody>
         </Table>
     )
