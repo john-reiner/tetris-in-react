@@ -19,7 +19,7 @@ const App = () =>  {
   const [signUpShow, setSignUpShow] = useState(false)
   const [username, setUsername] = useState('')
 
-  // const handleShow = () => setShow(true);
+  const handleLoginShow = () => setLoginShow(true);
   const handleLoginClose = () => setLoginShow(false);
   const handleSignUpClose = () => setSignUpShow(false)
 
@@ -44,13 +44,13 @@ const App = () =>  {
     fetch('http://localhost:3000/api/v1/users')
     .then(response => response.json())
     .then(users => setUsers(users))
-  }, [])
+  }, [loginShow])
 
   return (
     <div className="App">
       
       <LogIn handleCreateAccountClick={handleCreateAccountClick} logginUser={logginUser} users={users} handleLoginClose={handleLoginClose} loginShow={loginShow}/>
-      <SignUp signUpShow={signUpShow} handleSignUpClose={handleSignUpClose} />
+      <SignUp handleLoginShow={handleLoginShow} signUpShow={signUpShow} handleSignUpClose={handleSignUpClose} />
       <MainBody username={username} userId={userId}/>
       {/* <Tetris userId={userId} /> */}
       {/* <LeaderBoard scores={scores}/> */}

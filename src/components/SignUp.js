@@ -26,6 +26,8 @@ export default function LogIn(props) {
                     password: password,
                 })
             })
+            props.handleSignUpClose()
+            props.handleLoginShow()
         } else {
             alert('Feilds are empty or Passwords do not match')
         }
@@ -34,7 +36,7 @@ export default function LogIn(props) {
 
     return (
         <div>
-            <Modal show={props.signUpShow} onHide={props.handleLoginClose} >
+            <Modal show={props.signUpShow} onHide={props.handleSignUpClose} >
                 <Modal.Header closeButton>
                 <Modal.Title>Create an Account!</Modal.Title>
                 </Modal.Header>
@@ -58,7 +60,7 @@ export default function LogIn(props) {
                     <Button variant="primary" type='submit' form='form' >
                         Sign Up!
                     </Button>
-                    <Button variant="secondary" onClick={props.handleLoginClose}>
+                    <Button variant="secondary" onClick={props.handleSignUpClose}>
                         Play as guest
                     </Button>
                 </Modal.Footer>
