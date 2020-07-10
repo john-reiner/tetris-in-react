@@ -15,7 +15,20 @@ export default function LogIn(props) {
 
     const onSubmit = e => {
         e.preventDefault()
-        
+        if (username !== '' && password !== '' && password === confirmedPassword) {
+            fetch("http://localhost:3000/api/v1/users", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                })
+            })
+        } else {
+            alert('Feilds are empty or Passwords do not match')
+        }
         
     }
 
