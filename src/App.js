@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 // import Tetris from './components/Tetris';
 import LogIn from './components/LogIn';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 import MainBody from './components/MainBody';
 // import LeaderBoard from './components/LeaderBoard'
 
@@ -49,9 +49,9 @@ const App = () =>  {
 
   return (
     <div className="App">
-      <NavBar username={username}/>
+      
       <LogIn logginUser={logginUser} users={users} handleClose={handleClose} show={show}/>
-      <MainBody userId={userId} scores={scores}/>
+      <MainBody username={username} userId={userId} scores={scores}/>
       {/* <Tetris userId={userId} /> */}
       {/* <LeaderBoard scores={scores}/> */}
     </div>

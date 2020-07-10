@@ -1,4 +1,5 @@
 import React from 'react'
+import {Table} from 'react-bootstrap'
 import Score from './Score'
 
 export default function leaderBoard(props) {
@@ -12,27 +13,36 @@ export default function leaderBoard(props) {
 
     console.log(props)
     return (
-        <div>
-            <table className="ui celled striped padded table">
-                <tbody>
-                    <tr>
-                        <th>
-                            <h3 className="ui center aligned header">User Name</h3>
-                        </th>
-                        <th>
-                            <h3 className="ui center aligned header">Score</h3>
-                        </th>
-                        <th>
-                            <h3 className="ui center aligned header">Level</h3>
-                        </th>
-                        <th>
-                            <h3 className="ui center aligned header">Rows</h3>
-                        </th>
-                    </tr>
-                    {/* {renderScores()} */}
-                </tbody>
-            </table>
-        </div>
+        <Table striped bordered hover variant="dark">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Rows</th>
+                <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                {/* <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>
+                <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                </tr>
+                <tr>
+                <td>3</td>
+                <td colSpan="2">Larry the Bird</td>
+                <td>@twitter</td>
+                </tr> */}
+            </tbody>
+        </Table>
     )
 
 }

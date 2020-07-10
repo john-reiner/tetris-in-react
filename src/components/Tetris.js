@@ -15,7 +15,7 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-// import NavBar from './NavBar'
+import NavBar from './NavBar'
 // import LogIn from './LogIn'
 import LeaderBoard from './LeaderBoard'
 import SignUp from './SignUp'
@@ -116,7 +116,7 @@ const Tetris = (props) => {
     return (
         
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
-        
+        <NavBar username={props.username}/>
         <Route exact path="/leaderBoard" render={() => <LeaderBoard scores={props.scores}/>}/>
         <Route path="/sign-up" render={() => <SignUp/ >} />
         <Route exact path="/" render={() => 
