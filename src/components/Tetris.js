@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom'
 import { createStage, checkCollision } from '../gameHelpers';
 
@@ -23,12 +23,18 @@ import SignUp from './SignUp'
 const Tetris = (props) => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
-
+    const [scores, setScores] = useState([])
     const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
     const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
     const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
         rowsCleared
     );
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api/v1/scores')
+        .then(response => response.json())
+        .then(scores => setScores(scores))
+    }, [gameOver])
 
     const movePlayer = dir => {
         if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -117,7 +123,7 @@ const Tetris = (props) => {
         
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
         <NavBar username={props.username}/>
-        <Route exact path="/leaderBoard" render={() => <LeaderBoard scores={props.scores}/>}/>
+        <Route exact path="/leaderBoard" render={() => <LeaderBoard scores={scores}/>}/>
         <Route path="/sign-up" render={() => <SignUp/ >} />
         <Route exact path="/" render={() => 
             <StyledTetris>

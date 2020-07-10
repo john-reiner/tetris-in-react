@@ -15,7 +15,7 @@ export default function LogIn(props) {
         e.preventDefault()
         let user = props.users.find(user => user.username === username)
         setUser(user)
-        props.handleClose()
+        props.handleLoginClose()
     }
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function LogIn(props) {
     
     return (
         <div>
-            <Modal show={props.show} onHide={props.handleClose} >
+            <Modal show={props.loginShow} onHide={props.handleLoginClose} >
                 <Modal.Header closeButton>
                 <Modal.Title>Welcome to Tetris in React!</Modal.Title>
                 </Modal.Header>
@@ -40,7 +40,7 @@ export default function LogIn(props) {
                         <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} value={password} />
                     </Form.Group>
                     <Form.Text className="text-muted">
-                            Not registered? <Link to='/sign-up' href="#">Create an account</Link>
+                            Not registered? <Button variant="link" onClick={props.handleCreateAccountClick}>Create an account</Button>
                     </Form.Text>
                     </Form>
                 </Modal.Body>
@@ -48,7 +48,7 @@ export default function LogIn(props) {
                     <Button variant="primary" type='submit' form='form' >
                         Login
                     </Button>
-                    <Button variant="secondary" onClick={props.handleClose}>
+                    <Button variant="secondary" onClick={props.handleLoginClose}>
                         Login as guest
                     </Button>
                 </Modal.Footer>
@@ -56,11 +56,3 @@ export default function LogIn(props) {
         </div>
     )
 }
-            // <form>
-            //     <input name="userName" placeholder='User Name' value={username} onChange={handleChange}/>
-            //     <br />
-            //     <input name="passWord" type="password" placeholder='Password' value={password} onChange={handleChange}/>
-            //     <br />
-            //     <button onClick={onSubmit}>Submit</button>
-            //     <Link to='/sign-up'><button>Sign Up</button></Link>
-            // </form>

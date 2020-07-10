@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 // import Tetris from './components/Tetris';
 import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
 // import NavBar from './components/NavBar';
 import MainBody from './components/MainBody';
 // import LeaderBoard from './components/LeaderBoard'
@@ -13,16 +14,22 @@ import MainBody from './components/MainBody';
 const App = () =>  {
 
   const [users, setUsers] = useState([])
-  const [scores, setScores] = useState([])
   const [userId, setUserId] = useState('')
-  const [show, setShow] = useState(true);
+  const [loginShow, setLoginShow] = useState(true);
+  const [signUpShow, setSignUpShow] = useState(false)
   const [username, setUsername] = useState('')
 
   // const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleLoginClose = () => setLoginShow(false);
+  const handleSignUpClose = () => setSignUpShow(false)
 
   const logginUser = id => {
     setUserId(id)
+  }
+
+  const handleCreateAccountClick = () => {
+    handleLoginClose()
+    setSignUpShow(true)
   }
 
   useEffect(() => {
@@ -39,19 +46,12 @@ const App = () =>  {
     .then(users => setUsers(users))
   }, [])
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/v1/scores')
-    .then(response => response.json())
-    .then(scores => setScores(scores))
-  }, [])
-
-
-
   return (
     <div className="App">
       
-      <LogIn logginUser={logginUser} users={users} handleClose={handleClose} show={show}/>
-      <MainBody username={username} userId={userId} scores={scores}/>
+      <LogIn handleCreateAccountClick={handleCreateAccountClick} logginUser={logginUser} users={users} handleLoginClose={handleLoginClose} loginShow={loginShow}/>
+      <SignUp signUpShow={signUpShow} handleSignUpClose={handleSignUpClose} />
+      <MainBody username={username} userId={userId}/>
       {/* <Tetris userId={userId} /> */}
       {/* <LeaderBoard scores={scores}/> */}
     </div>

@@ -1,44 +1,55 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import {Button, Modal, Form} from 'react-bootstrap'
 
-export default class LogIn extends Component {
 
-    state = {
-        firstName: '',
-        lastName: '',
-        userName: '',
-        passWord: '',
-        confirmedPassword: ''
-    }
+export default function LogIn(props) {
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmedPassword, setConfirmedPassword] = useState('')
 
-    onSubmit = e => {
+    const handleUsernameChange = e => setUsername(e.target.value)
+    const handlePasswordChange = e => setPassword(e.target.value)
+    const handleConfirmedPasswordChange = e => setConfirmedPassword(e.target.value)
+
+
+    const onSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
-    }
-    render() {
         
-        return (
-            <div>
-                <form>
-                    <input name="firstName" placeholder='First Name' value={this.state.firstName} onChange={this.handleChange}/>
-                    <br />
-                    <input name="lastName" placeholder='Last Name' value={this.state.lastName} onChange={this.handleChange}/>
-                    <br />
-                    <input name="userName"placeholder='User Name' value={this.state.userName} onChange={this.handleChange}/>
-                    <br />
-                    <input name="password" type="password" placeholder='Password' value={this.state.password} onChange={this.handleChange}/>
-                    <br />
-                    <input name="confirmedPassword" type="password" placeholder='Confirm Password' value={this.state.confirmedPassword} onChange={this.handleChange}/>
-                    <br />
-                    <button onClick={this.onSubmit}>Submit</button>
-                    <button>Sign Up</button>
-                </form>
-            </div>
-        )
+        
     }
+
+    return (
+        <div>
+            <Modal show={props.signUpShow} onHide={props.handleLoginClose} >
+                <Modal.Header closeButton>
+                <Modal.Title>Create an Account!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={onSubmit} id="form">
+                    <Form.Group>
+                        <Form.Label>Create a Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" onChange={handleUsernameChange} value={username} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Create a Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} value={password} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" onChange={handleConfirmedPasswordChange} value={confirmedPassword} />
+                    </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" type='submit' form='form' >
+                        Sign Up!
+                    </Button>
+                    <Button variant="secondary" onClick={props.handleLoginClose}>
+                        Play as guest
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    )
 }
